@@ -1,0 +1,1001 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Restart Academy – Freschezza che trasforma. Esperienza che guida.</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --nero: #0d0d0d;
+    --bianco: #f7f4ef;
+    --accent: #c8a96e;
+    --accent-dark: #8b6d3a;
+    --grigio-medio: #3a3a3a;
+    --grigio-chiaro: #b0a99a;
+    --rosso-soft: #c45c3a;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background-color: var(--nero);
+    color: var(--bianco);
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 300;
+    line-height: 1.8;
+    overflow-x: hidden;
+  }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 8vw 10vw;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -20%;
+    right: -10%;
+    width: 60vw;
+    height: 60vw;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(200,169,110,0.08) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .hero-label {
+    font-size: 0.75rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 2rem;
+    opacity: 0;
+    animation: fadeUp 0.8s 0.2s forwards;
+  }
+
+  .hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.8rem, 7vw, 6rem);
+    font-weight: 900;
+    line-height: 1.05;
+    max-width: 14ch;
+    opacity: 0;
+    animation: fadeUp 0.8s 0.4s forwards;
+  }
+
+  .hero h1 em {
+    font-style: italic;
+    color: var(--accent);
+  }
+
+  .hero-sub {
+    margin-top: 2.5rem;
+    font-size: clamp(1rem, 1.8vw, 1.25rem);
+    font-weight: 300;
+    max-width: 50ch;
+    color: var(--grigio-chiaro);
+    opacity: 0;
+    animation: fadeUp 0.8s 0.6s forwards;
+  }
+
+  .hero-cta {
+    margin-top: 3.5rem;
+    display: inline-block;
+    padding: 1rem 2.5rem;
+    border: 1px solid var(--accent);
+    color: var(--accent);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.85rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    text-decoration: none;
+    transition: background 0.3s, color 0.3s;
+    opacity: 0;
+    animation: fadeUp 0.8s 0.8s forwards;
+  }
+
+  .hero-cta:hover {
+    background: var(--accent);
+    color: var(--nero);
+  }
+
+  /* ── SEZIONE DOLORE ── */
+  .dolore {
+    padding: 10vw 10vw;
+    background: #111;
+    position: relative;
+  }
+
+  .dolore::before {
+    content: '"';
+    font-family: 'Playfair Display', serif;
+    font-size: 30vw;
+    color: rgba(200,169,110,0.04);
+    position: absolute;
+    top: -5%;
+    left: -2%;
+    line-height: 1;
+    pointer-events: none;
+  }
+
+  .sezione-label {
+    font-size: 0.7rem;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 1.5rem;
+  }
+
+  .dolore h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.8rem, 4vw, 3.2rem);
+    font-weight: 700;
+    line-height: 1.2;
+    max-width: 22ch;
+    margin-bottom: 3rem;
+  }
+
+  .domande-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1px;
+    background: rgba(200,169,110,0.15);
+    border: 1px solid rgba(200,169,110,0.15);
+  }
+
+  .domanda-item {
+    background: #111;
+    padding: 2rem 2rem;
+    position: relative;
+    transition: background 0.3s;
+  }
+
+  .domanda-item:hover {
+    background: rgba(200,169,110,0.05);
+  }
+
+  .domanda-item::before {
+    content: '—';
+    color: var(--accent);
+    display: block;
+    margin-bottom: 0.75rem;
+    font-size: 1.2rem;
+  }
+
+  .domanda-item p {
+    font-size: 1rem;
+    line-height: 1.7;
+    color: var(--grigio-chiaro);
+  }
+
+  .domanda-item strong {
+    color: var(--bianco);
+    font-weight: 500;
+  }
+
+  /* ── SEZIONE DIAGNOSI ── */
+  .diagnosi {
+    padding: 10vw 10vw;
+    background: var(--nero);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 6vw;
+    align-items: center;
+  }
+
+  @media (max-width: 768px) {
+    .diagnosi { grid-template-columns: 1fr; }
+  }
+
+  .diagnosi-testo h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+    font-weight: 700;
+    line-height: 1.2;
+    margin-bottom: 1.5rem;
+  }
+
+  .diagnosi-testo p {
+    color: var(--grigio-chiaro);
+    font-size: 1rem;
+    margin-bottom: 1.2rem;
+  }
+
+  .diagnosi-testo p strong {
+    color: var(--bianco);
+    font-weight: 500;
+  }
+
+  .numero-grande {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(6rem, 15vw, 12rem);
+    font-weight: 900;
+    color: var(--accent);
+    line-height: 0.85;
+    opacity: 0.15;
+    display: block;
+    text-align: right;
+  }
+
+  /* ── SEZIONE SOLUZIONE ── */
+  .soluzione {
+    padding: 10vw 10vw;
+    background: #0a0a0a;
+  }
+
+  .soluzione-header {
+    margin-bottom: 5rem;
+    max-width: 600px;
+  }
+
+  .soluzione-header h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 4.5vw, 3.5rem);
+    font-weight: 700;
+    line-height: 1.15;
+    margin-bottom: 1.5rem;
+  }
+
+  .soluzione-header h2 em {
+    color: var(--accent);
+    font-style: italic;
+  }
+
+  .soluzione-header p {
+    color: var(--grigio-chiaro);
+    font-size: 1.05rem;
+  }
+
+  .pilastri {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 2px;
+  }
+
+  .pilastro {
+    padding: 2.5rem 2rem;
+    border: 1px solid rgba(200,169,110,0.1);
+    position: relative;
+    overflow: hidden;
+    transition: border-color 0.3s;
+  }
+
+  .pilastro:hover {
+    border-color: rgba(200,169,110,0.4);
+  }
+
+  .pilastro-numero {
+    font-family: 'Playfair Display', serif;
+    font-size: 4rem;
+    font-weight: 900;
+    color: rgba(200,169,110,0.12);
+    line-height: 1;
+    margin-bottom: 1rem;
+  }
+
+  .pilastro h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.3rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    color: var(--bianco);
+  }
+
+  .pilastro p {
+    font-size: 0.9rem;
+    color: var(--grigio-chiaro);
+    line-height: 1.7;
+  }
+
+  .pilastro-tag {
+    display: inline-block;
+    margin-top: 1.5rem;
+    font-size: 0.65rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    padding: 0.3rem 0.8rem;
+    border: 1px solid rgba(200,169,110,0.3);
+    color: var(--accent);
+  }
+
+  /* ── COME FUNZIONA ── */
+  .processo {
+    padding: 10vw 10vw;
+    background: var(--nero);
+  }
+
+  .processo-header {
+    margin-bottom: 5rem;
+  }
+
+  .processo-header h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.8rem, 4vw, 3rem);
+    font-weight: 700;
+    margin-bottom: 1rem;
+  }
+
+  .steps {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 0;
+    position: relative;
+  }
+
+  .steps::before {
+    content: '';
+    position: absolute;
+    top: 2rem;
+    left: 2rem;
+    right: 2rem;
+    height: 1px;
+    background: linear-gradient(to right, var(--accent), transparent);
+    opacity: 0.3;
+  }
+
+  @media (max-width: 700px) {
+    .steps::before { display: none; }
+  }
+
+  .step {
+    padding: 3rem 1.5rem 2rem;
+    position: relative;
+  }
+
+  .step-dot {
+    width: 4rem;
+    height: 4rem;
+    border: 1px solid var(--accent);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Playfair Display', serif;
+    font-size: 1.2rem;
+    color: var(--accent);
+    margin-bottom: 1.5rem;
+    background: var(--nero);
+    position: relative;
+    z-index: 1;
+  }
+
+  .step h4 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem;
+    font-weight: 700;
+    margin-bottom: 0.75rem;
+    color: var(--bianco);
+  }
+
+  .step p {
+    font-size: 0.88rem;
+    color: var(--grigio-chiaro);
+    line-height: 1.7;
+  }
+
+  /* ── CITAZIONE ── */
+  .citazione {
+    padding: 8vw 10vw;
+    background: #111;
+    text-align: center;
+  }
+
+  .citazione blockquote {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.4rem, 3vw, 2.4rem);
+    font-weight: 400;
+    font-style: italic;
+    line-height: 1.4;
+    max-width: 700px;
+    margin: 0 auto 2rem;
+    color: var(--bianco);
+  }
+
+  .citazione blockquote em {
+    color: var(--accent);
+    font-style: normal;
+  }
+
+  .citazione cite {
+    font-size: 0.75rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--grigio-chiaro);
+  }
+
+  /* ── PER CHI È ── */
+  .per-chi {
+    padding: 10vw 10vw;
+    background: var(--nero);
+  }
+
+  .per-chi h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.8rem, 4vw, 3rem);
+    font-weight: 700;
+    margin-bottom: 3rem;
+  }
+
+  .target-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .target-card {
+    padding: 2rem;
+    border-left: 2px solid var(--accent);
+    background: rgba(200,169,110,0.03);
+    transition: background 0.3s;
+  }
+
+  .target-card:hover {
+    background: rgba(200,169,110,0.07);
+  }
+
+  .target-card h4 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.15rem;
+    font-weight: 700;
+    margin-bottom: 0.75rem;
+    color: var(--bianco);
+  }
+
+  .target-card p {
+    font-size: 0.9rem;
+    color: var(--grigio-chiaro);
+    line-height: 1.7;
+  }
+
+  /* ── CTA FINALE ── */
+  .cta-finale {
+    padding: 12vw 10vw;
+    background: #0a0a0a;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .cta-finale::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 80vw;
+    height: 80vw;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(200,169,110,0.06) 0%, transparent 60%);
+    pointer-events: none;
+  }
+
+  .cta-finale h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 5vw, 4rem);
+    font-weight: 900;
+    line-height: 1.1;
+    max-width: 20ch;
+    margin: 0 auto 1.5rem;
+  }
+
+  .cta-finale h2 em {
+    font-style: italic;
+    color: var(--accent);
+  }
+
+  .cta-finale p {
+    color: var(--grigio-chiaro);
+    font-size: 1.05rem;
+    max-width: 45ch;
+    margin: 0 auto 3.5rem;
+  }
+
+  .btn-primario {
+    display: inline-block;
+    padding: 1.1rem 3rem;
+    background: var(--accent);
+    color: var(--nero);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.85rem;
+    font-weight: 500;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    text-decoration: none;
+    transition: background 0.3s, transform 0.2s;
+  }
+
+  .btn-primario:hover {
+    background: var(--bianco);
+    transform: translateY(-2px);
+  }
+
+  /* ── FOOTER SEZIONE ── */
+  .firma {
+    padding: 3rem 10vw;
+    border-top: 1px solid rgba(200,169,110,0.15);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+
+  .firma-logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem;
+    letter-spacing: 0.1em;
+    color: var(--accent);
+  }
+
+  .firma p {
+    font-size: 0.75rem;
+    color: var(--grigio-chiaro);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  /* ── ANIMATIONS ── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .reveal {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+  }
+
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* ── UTILITY ── */
+  .accent { color: var(--accent); }
+
+  .divider {
+    display: block;
+    width: 3rem;
+    height: 1px;
+    background: var(--accent);
+    margin: 2rem 0;
+    opacity: 0.5;
+  }
+
+  @media (max-width: 600px) {
+    .hero { padding: 15vw 7vw; }
+    .dolore, .diagnosi, .soluzione, .processo, .per-chi, .cta-finale { padding: 15vw 7vw; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<section class="hero">
+  <p class="hero-label">Restart Academy · Programma Imprese</p>
+  <h1>Il futuro non si <em>aspetta.</em><br>Si costruisce adesso.</h1>
+  <p class="hero-sub">La consulenza che mancava alle PMI italiane: la mente fresca di un talento selezionato, la guida sicura di un senior con decenni di esperienza.</p>
+  <a href="#soluzione" class="hero-cta">Scopri il programma</a>
+</section>
+
+<!-- IL PROBLEMA -->
+<section class="dolore">
+  <p class="sezione-label reveal">Il problema che non si dice ad alta voce</p>
+  <h2 class="reveal">Ti ritrovi in almeno una di queste situazioni?</h2>
+
+  <div class="domande-grid">
+    <div class="domanda-item reveal">
+      <p><strong>Sai che devi cambiare qualcosa,</strong> ma non sai da dove iniziare. Il mercato si muove veloce, tu sei fermo, e la colpa non è tua — è che nessuno ti ha ancora portato le giuste domande.</p>
+    </div>
+    <div class="domanda-item reveal">
+      <p><strong>Hai una piccola impresa che funziona,</strong> ma senti che potrebbe fare molto di più. Ti manca una visione esterna, qualcuno che guardi la tua azienda come se la vedesse per la prima volta.</p>
+    </div>
+    <div class="domanda-item reveal">
+      <p><strong>Hai già cercato un consulente.</strong> Era caro. Parlava difficile. Ti ha consegnato un documento che non hai mai aperto. E le cose sono rimaste esattamente come prima.</p>
+    </div>
+    <div class="domanda-item reveal">
+      <p><strong>Vorresti innovare,</strong> ma non hai un reparto R&D, non hai un ufficio marketing strutturato. Hai te, qualche collaboratore fidato, e voglia di crescere.</p>
+    </div>
+  </div>
+</section>
+
+<!-- DIAGNOSI -->
+<section class="diagnosi">
+  <div class="diagnosi-testo reveal">
+    <p class="sezione-label">La diagnosi</p>
+    <h2>Le PMI non mancano di volontà.<br>Mancano di <span class="accent">prospettiva.</span></h2>
+    <span class="divider"></span>
+    <p>Il 95% delle imprese italiane ha meno di 10 dipendenti. Micro e piccole realtà che tengono in piedi l'economia del paese — ma che spesso lavorano con gli stessi schemi di 10, 15, 20 anni fa.</p>
+    <p>Non perché il titolare non sia intelligente. <strong>Ma perché nessuno entra mai da fuori a portare aria nuova.</strong></p>
+    <p>La grande consulenza è pensata per le multinazionali. Costosa, lenta, distante dalla realtà di chi fa impresa ogni giorno con i mezzi che ha.</p>
+    <p>Il risultato? Ottimi imprenditori che si ritrovano a gestire l'ordinario, senza mai avere il tempo — né lo sguardo — per costruire lo straordinario.</p>
+  </div>
+  <div class="reveal" style="text-align:right;">
+    <span class="numero-grande" style="opacity:0.12; font-size: clamp(5rem,14vw,11rem);">95%</span>
+    <p style="color: var(--grigio-chiaro); font-size: 0.8rem; margin-top: 1rem; letter-spacing: 0.15em; text-transform: uppercase;">delle imprese italiane<br>ha meno di 10 dipendenti</p>
+  </div>
+</section>
+
+<!-- LA SOLUZIONE -->
+<section class="soluzione" id="soluzione">
+  <div class="soluzione-header reveal">
+    <p class="sezione-label">La risposta</p>
+    <h2>Restart Academy:<br>il modello che <em>cambia le carte</em> in tavola.</h2>
+    <p>Non è una consulenza tradizionale. È un incontro tra due forze complementari che, insieme, producono qualcosa che nessuna delle due potrebbe fare da sola.</p>
+  </div>
+
+  <div class="pilastri">
+    <div class="pilastro reveal">
+      <div class="pilastro-numero">01</div>
+      <h3>La mente fresca</h3>
+      <p>Uno studente o neolaureato — selezionato tra i migliori talenti italiani attraverso un questionario strutturato e un algoritmo di valutazione — porta nella tua azienda una prospettiva che non è ancora stata contaminata dalle abitudini del settore. Guarda dove tu non guardi più.</p>
+      <span class="pilastro-tag">Talento selezionato</span>
+    </div>
+    <div class="pilastro reveal">
+      <div class="pilastro-numero">02</div>
+      <h3>La guida esperta</h3>
+      <p>Ogni giovane consulente è affiancato e supervisionato da un Senior con anni di esperienza concreta sul campo. Nessuna ingenuità, nessun rischio: solo idee fresche tradotte in azioni praticabili e verificate.</p>
+      <span class="pilastro-tag">Supervisione senior</span>
+    </div>
+    <div class="pilastro reveal">
+      <div class="pilastro-numero">03</div>
+      <h3>Il valore reale</h3>
+      <p>Ottieni l'energia e la visione della nuova generazione a costi accessibili per una PMI — senza rinunciare alla solidità di chi ha già fatto errori al posto tuo e sa come evitarli.</p>
+      <span class="pilastro-tag">Accessibile · Concreto</span>
+    </div>
+  </div>
+</section>
+
+<!-- COME FUNZIONA -->
+<section class="processo">
+  <div class="processo-header reveal">
+    <p class="sezione-label">Il percorso</p>
+    <h2>Come funziona Restart Academy</h2>
+  </div>
+
+  <div class="steps">
+    <div class="step reveal">
+      <div class="step-dot">1</div>
+      <h4>Ascolto</h4>
+      <p>Partiamo dalla tua realtà. Un colloquio approfondito per capire dove sei, dove vuoi andare, e cosa ti frena davvero.</p>
+    </div>
+    <div class="step reveal">
+      <div class="step-dot">2</div>
+      <h4>Selezione</h4>
+      <p>Abbiniamo alla tua impresa il talento più adatto — selezionato tramite questionario e algoritmo proprietario tra i migliori profili universitari italiani.</p>
+    </div>
+    <div class="step reveal">
+      <div class="step-dot">3</div>
+      <h4>Lavoro congiunto</h4>
+      <p>Il giovane consulente, guidato dal Senior, analizza la tua azienda, identifica le opportunità e costruisce con te un piano di azione.</p>
+    </div>
+    <div class="step reveal">
+      <div class="step-dot">4</div>
+      <h4>Risultati</h4>
+      <p>Non un documento da mettere in un cassetto. Un progetto concreto, un cambiamento misurabile, un nuovo modo di guardare la tua impresa.</p>
+    </div>
+  </div>
+</section>
+
+<!-- CITAZIONE -->
+<section class="citazione">
+  <blockquote class="reveal">
+    "I migliori cambiamenti arrivano da chi guarda senza pregiudizi — e sa come <em>trasformare uno sguardo in azione.</em>"
+  </blockquote>
+  <cite>— Restart Studio · Restart Academy</cite>
+</section>
+
+<!-- PER CHI È -->
+<section class="per-chi">
+  <p class="sezione-label reveal">A chi è dedicato</p>
+  <h2 class="reveal">Restart Academy è per te se...</h2>
+
+  <div class="target-grid">
+    <div class="target-card reveal">
+      <h4>Sei un imprenditore con una microimpresa</h4>
+      <p>Fai tutto tu — o quasi. Sei bravo nel tuo mestiere, ma sai che manca qualcosa. Una visione esterna, nuova, concreta.</p>
+    </div>
+    <div class="target-card reveal">
+      <h4>Gestisci una PMI in fase di trasformazione</h4>
+      <p>Stai crescendo, o vuoi crescere. Hai bisogno di idee fresche e di qualcuno che le aiuti a diventare realtà senza stravolgere tutto.</p>
+    </div>
+    <div class="target-card reveal">
+      <h4>Vuoi innovare senza rischi inutili</h4>
+      <p>Non cerchi teorie. Cerchi qualcuno che capisca la tua azienda e ti aiuti a fare il passo successivo nel modo giusto.</p>
+    </div>
+    <div class="target-card reveal">
+      <h4>Non hai budget da grande azienda</h4>
+      <p>La consulenza di qualità non dovrebbe essere un privilegio riservato ai grandi. Con Restart Academy, non lo è.</p>
+    </div>
+  </div>
+</section>
+
+<!-- CTA FINALE -->
+<section class="cta-finale">
+  <h2 class="reveal">È arrivato il momento di <em>far entrare</em> il cambiamento.</h2>
+  <p class="reveal">La tua impresa merita uno sguardo nuovo. Noi lo selezioniamo, lo formiamo e lo mettiamo al tuo servizio — con l'esperienza che garantisce risultati.</p>
+  <button class="btn-primario reveal" id="apri-form">Candidati al programma</button>
+</section>
+
+<!-- FIRMA -->
+<footer class="firma">
+  <span class="firma-logo">Restart Academy</span>
+  <p>Un progetto Restart Studio · restartstudio.it</p>
+</footer>
+
+<!-- ── MODAL FORM ── -->
+<div id="modal-overlay" style="display:none; position:fixed; top:0; left:0; right:0; bottom:0; z-index:9999; background:rgba(0,0,0,0.88); backdrop-filter:blur(4px); align-items:center; justify-content:center; padding:1.5rem; overflow-y:auto;">
+
+  <div id="modal-box" style="
+    background:#161616; border:1px solid rgba(200,169,110,0.25);
+    max-width:560px; width:100%; padding:3rem 2.5rem;
+    position:relative; animation: modalIn 0.35s ease;">
+
+    <!-- chiudi -->
+    <button id="chiudi-modal" style="
+      position:absolute; top:1.2rem; right:1.2rem;
+      background:none; border:none; color:#b0a99a;
+      font-size:1.4rem; cursor:pointer; line-height:1;">&#x2715;</button>
+
+    <!-- step 1: form -->
+    <div id="step-form">
+      <p style="font-size:0.7rem;letter-spacing:0.3em;text-transform:uppercase;color:#c8a96e;margin-bottom:1rem;">Restart Academy · Candidatura</p>
+      <h3 style="font-family:'Playfair Display',serif;font-size:1.6rem;font-weight:700;line-height:1.2;margin-bottom:0.5rem;color:#f7f4ef;">Parlaci della tua impresa.</h3>
+      <p style="font-size:0.9rem;color:#b0a99a;margin-bottom:2rem;">Ti ricontatteremo entro 24 ore. Nessuno spam, solo una conversazione vera.</p>
+
+      <div style="display:flex;flex-direction:column;gap:1rem;">
+
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;">
+          <div>
+            <label style="font-size:0.7rem;letter-spacing:0.15em;text-transform:uppercase;color:#b0a99a;display:block;margin-bottom:0.4rem;">Nome *</label>
+            <input id="f-nome" type="text" placeholder="Mario" style="
+              width:100%;background:#1e1e1e;border:1px solid rgba(200,169,110,0.2);
+              color:#f7f4ef;padding:0.7rem 1rem;font-family:'DM Sans',sans-serif;
+              font-size:0.9rem;outline:none;transition:border-color 0.2s;">
+          </div>
+          <div>
+            <label style="font-size:0.7rem;letter-spacing:0.15em;text-transform:uppercase;color:#b0a99a;display:block;margin-bottom:0.4rem;">Cognome *</label>
+            <input id="f-cognome" type="text" placeholder="Rossi" style="
+              width:100%;background:#1e1e1e;border:1px solid rgba(200,169,110,0.2);
+              color:#f7f4ef;padding:0.7rem 1rem;font-family:'DM Sans',sans-serif;
+              font-size:0.9rem;outline:none;transition:border-color 0.2s;">
+          </div>
+        </div>
+
+        <div>
+          <label style="font-size:0.7rem;letter-spacing:0.15em;text-transform:uppercase;color:#b0a99a;display:block;margin-bottom:0.4rem;">Nome Azienda *</label>
+          <input id="f-azienda" type="text" placeholder="Rossi Srl" style="
+            width:100%;background:#1e1e1e;border:1px solid rgba(200,169,110,0.2);
+            color:#f7f4ef;padding:0.7rem 1rem;font-family:'DM Sans',sans-serif;
+            font-size:0.9rem;outline:none;transition:border-color 0.2s;">
+        </div>
+
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;">
+          <div>
+            <label style="font-size:0.7rem;letter-spacing:0.15em;text-transform:uppercase;color:#b0a99a;display:block;margin-bottom:0.4rem;">Settore</label>
+            <input id="f-settore" type="text" placeholder="es. Manifattura" style="
+              width:100%;background:#1e1e1e;border:1px solid rgba(200,169,110,0.2);
+              color:#f7f4ef;padding:0.7rem 1rem;font-family:'DM Sans',sans-serif;
+              font-size:0.9rem;outline:none;">
+          </div>
+          <div>
+            <label style="font-size:0.7rem;letter-spacing:0.15em;text-transform:uppercase;color:#b0a99a;display:block;margin-bottom:0.4rem;">N° Dipendenti</label>
+            <select id="f-dipendenti" style="
+              width:100%;background:#1e1e1e;border:1px solid rgba(200,169,110,0.2);
+              color:#f7f4ef;padding:0.7rem 1rem;font-family:'DM Sans',sans-serif;
+              font-size:0.9rem;outline:none;appearance:none;">
+              <option value="">Seleziona</option>
+              <option>1–5</option>
+              <option>6–15</option>
+              <option>16–50</option>
+              <option>50+</option>
+            </select>
+          </div>
+        </div>
+
+        <div>
+          <label style="font-size:0.7rem;letter-spacing:0.15em;text-transform:uppercase;color:#b0a99a;display:block;margin-bottom:0.4rem;">Email *</label>
+          <input id="f-email" type="email" placeholder="mario@rossi.it" style="
+            width:100%;background:#1e1e1e;border:1px solid rgba(200,169,110,0.2);
+            color:#f7f4ef;padding:0.7rem 1rem;font-family:'DM Sans',sans-serif;
+            font-size:0.9rem;outline:none;transition:border-color 0.2s;">
+        </div>
+
+        <div>
+          <label style="font-size:0.7rem;letter-spacing:0.15em;text-transform:uppercase;color:#b0a99a;display:block;margin-bottom:0.4rem;">Telefono</label>
+          <input id="f-telefono" type="tel" placeholder="+39 333 1234567" style="
+            width:100%;background:#1e1e1e;border:1px solid rgba(200,169,110,0.2);
+            color:#f7f4ef;padding:0.7rem 1rem;font-family:'DM Sans',sans-serif;
+            font-size:0.9rem;outline:none;">
+        </div>
+
+        <div>
+          <label style="font-size:0.7rem;letter-spacing:0.15em;text-transform:uppercase;color:#b0a99a;display:block;margin-bottom:0.4rem;">Cosa vorresti migliorare nella tua impresa?</label>
+          <textarea id="f-note" rows="3" placeholder="Racconta brevemente il tuo punto di partenza..." style="
+            width:100%;background:#1e1e1e;border:1px solid rgba(200,169,110,0.2);
+            color:#f7f4ef;padding:0.7rem 1rem;font-family:'DM Sans',sans-serif;
+            font-size:0.9rem;outline:none;resize:vertical;"></textarea>
+        </div>
+
+        <p id="form-errore" style="color:#c45c3a;font-size:0.8rem;display:none;">Compila i campi obbligatori: Nome, Cognome, Azienda ed Email.</p>
+
+        <button id="invia-form" style="
+          padding:1rem 2rem;background:#c8a96e;color:#0d0d0d;
+          border:none;font-family:'DM Sans',sans-serif;font-size:0.85rem;
+          font-weight:500;letter-spacing:0.15em;text-transform:uppercase;
+          cursor:pointer;transition:background 0.2s,transform 0.15s;margin-top:0.5rem;">
+          Invia la candidatura
+        </button>
+      </div>
+    </div>
+
+    <!-- step 2: invio in corso -->
+    <div id="step-loading" style="display:none;text-align:center;padding:2rem 0;">
+      <div id="spinner" style="
+        width:2.5rem;height:2.5rem;border:2px solid rgba(200,169,110,0.2);
+        border-top-color:#c8a96e;border-radius:50%;
+        animation:spin 0.8s linear infinite;margin:0 auto 1.5rem;"></div>
+      <p style="color:#b0a99a;font-size:0.9rem;" id="loading-msg">Salvataggio in corso…</p>
+    </div>
+
+    <!-- step 3: successo -->
+    <div id="step-successo" style="display:none;text-align:center;padding:2rem 0;">
+      <div style="font-size:2.5rem;margin-bottom:1.5rem;">✓</div>
+      <h3 style="font-family:'Playfair Display',serif;font-size:1.5rem;color:#f7f4ef;margin-bottom:1rem;">Candidatura ricevuta.</h3>
+      <p style="color:#b0a99a;font-size:0.9rem;line-height:1.7;">Abbiamo salvato i tuoi dati e impostato un promemoria per ricontattarti entro domani.<br>A presto.</p>
+      <button id="chiudi-successo" style="
+        margin-top:2rem;padding:0.8rem 2rem;background:none;
+        border:1px solid rgba(200,169,110,0.4);color:#c8a96e;
+        font-family:'DM Sans',sans-serif;font-size:0.8rem;
+        letter-spacing:0.15em;text-transform:uppercase;cursor:pointer;">
+        Chiudi
+      </button>
+    </div>
+
+    <!-- step 4: errore -->
+    <div id="step-errore-api" style="display:none;text-align:center;padding:2rem 0;">
+      <div style="font-size:2rem;margin-bottom:1rem;color:#c45c3a;">!</div>
+      <h3 style="font-family:'Playfair Display',serif;font-size:1.3rem;color:#f7f4ef;margin-bottom:1rem;">Qualcosa non ha funzionato.</h3>
+      <p style="color:#b0a99a;font-size:0.9rem;" id="errore-api-msg">Riprova tra qualche istante.</p>
+      <button id="riprova-btn" style="
+        margin-top:1.5rem;padding:0.8rem 2rem;background:#c8a96e;color:#0d0d0d;
+        border:none;font-family:'DM Sans',sans-serif;font-size:0.8rem;
+        letter-spacing:0.15em;text-transform:uppercase;cursor:pointer;">
+        Riprova
+      </button>
+    </div>
+
+  </div>
+</div>
+
+<style>
+@keyframes modalIn {
+  from { opacity:0; transform:translateY(20px); }
+  to   { opacity:1; transform:translateY(0); }
+}
+@keyframes spin {
+  to { transform:rotate(360deg); }
+}
+</style>
+
+<script>
+/* ── helpers UI ── */
+const overlay   = document.getElementById('modal-overlay');
+const stepForm  = document.getElementById('step-form');
+const stepLoad  = document.getElementById('step-loading');
+const stepOk    = document.getElementById('step-successo');
+const stepErr   = document.getElementById('step-errore-api');
+
+function mostraStep(id) {
+  [stepForm, stepLoad, stepOk, stepErr].forEach(s => s.style.display = 'none');
+  document.getElementById(id).style.display = 'block';
+}
+
+function apriModal() {
+  mostraStep('step-form');
+  overlay.style.display = 'flex';
+  document.body.style.overflow = 'hidden';
+}
+function chiudiModal() {
+  overlay.style.display = 'none';
+  document.body.style.overflow = '';
+}
+
+document.getElementById('apri-form').addEventListener('click', apriModal);
+['chiudi-modal','chiudi-successo'].forEach(id => {
+  document.getElementById(id).addEventListener('click', chiudiModal);
+});
+overlay.addEventListener('click', e => { if(e.target === overlay) chiudiModal(); });
+document.getElementById('riprova-btn').addEventListener('click', () => mostraStep('step-form'));
+/* ── invio ── */
+document.getElementById('invia-form').addEventListener('click', async () => {
+  const nome     = document.getElementById('f-nome').value.trim();
+  const cognome  = document.getElementById('f-cognome').value.trim();
+  const azienda  = document.getElementById('f-azienda').value.trim();
+  const email    = document.getElementById('f-email').value.trim();
+  const settore  = document.getElementById('f-settore').value.trim();
+  const dip      = document.getElementById('f-dipendenti').value;
+  const telefono = document.getElementById('f-telefono').value.trim();
+  const note     = document.getElementById('f-note').value.trim();
+
+  const errEl = document.getElementById('form-errore');
+  if (!nome || !cognome || !azienda || !email) {
+    errEl.style.display = 'block'; return;
+  }
+  errEl.style.display = 'none';
+
+  // ─────────────────────────────────────────────────────────
+  // ISTRUZIONE: sostituisci con la tua URL Apps Script Web App
+  // ─────────────────────────────────────────────────────────
+  const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwK0i0wUT32uW3xGQadPeTfuRkXLxKy7T5_UkyMbVFE07cQ5mK1TKBsEifETV9xqdRQ/exec';
+
+  mostraStep('step-loading');
+  document.getElementById('loading-msg').textContent = 'Salvataggio in corso…';
+
+  try {
+    if (APPS_SCRIPT_URL === 'INCOLLA_QUI_LA_TUA_URL_APPS_SCRIPT') {
+      throw new Error('Configura la URL di Google Apps Script nel file HTML.');
+    }
+
+    // Apps Script CORS workaround: usa GET con parametri + no-cors via iframe nascosto
+    // L'iframe invia i dati; dopo 3 secondi mostriamo successo (non possiamo leggere la risposta con no-cors)
+    const params = new URLSearchParams({
+      nome, cognome, azienda,
+      settore: settore || '',
+      dipendenti: dip || '',
+      email,
+      telefono: telefono || '',
+      note: note || ''
+    });
+
+    const url = APPS_SCRIPT_URL + '?' + params.toString();
+
+    // Creiamo un iframe nascosto che fa la GET — bypassa il CORS
+    const iframe = document.createElement('iframe');
+    iframe.style.display = 'none';
+    iframe.name = 'hidden_submit_' + Date.now();
+    document.body.appendChild(iframe);
+
+    // Usiamo fetch con mode no-cors come fallback — non leggiamo la risposta ma la richiesta arriva
+    await fetch(url, { method: 'GET', mode: 'no-cors' });
+
+    // Con no-cors non possiamo leggere la risposta ma la richiesta viene eseguita
+    // Aspettiamo 1.5s per dare tempo allo script di processare
+    await new Promise(r => setTimeout(r, 1500));
+
+    iframe.remove();
+    mostraStep('step-successo');
+
+  } catch(err) {
+    document.getElementById('errore-api-msg').textContent = err.message || 'Errore di rete. Riprova.';
+    mostraStep('step-errore-api');
+  }
+});
+
+/* ── scroll reveal ── */
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach((entry, i) => {
+    if (entry.isIntersecting) {
+      setTimeout(() => entry.target.classList.add('visible'), i * 80);
+      observer.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.12 });
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>
